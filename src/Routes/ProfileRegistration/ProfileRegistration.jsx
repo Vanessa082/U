@@ -1,6 +1,5 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { useLocalStorage } from '@uidotdev/usehooks';
 const validate = values => {
   const errors = {};
 
@@ -32,12 +31,12 @@ const validate = values => {
 };
 
 const ProfileRegistration = () => {
-  const [storedData, setStoredData] = useLocalStorage('profileData', {});
   const formik = useFormik({
     initialValues: {
       firstName: '',
       lastName: '',
       email: '',
+      number:'',
     },
     validate,
     onSubmit: values => {
@@ -45,7 +44,6 @@ const ProfileRegistration = () => {
     },
   });
 
-  setStoredData(values);
 
   return (
     <form onSubmit={formik.handleSubmit}>
